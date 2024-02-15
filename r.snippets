@@ -1,0 +1,323 @@
+snippet lib
+	library(${1:package})
+
+snippet req
+	require(${1:package})
+
+snippet src
+	source("${1:file.R}")
+
+snippet ret
+	return(${1:code})
+
+snippet mat
+	matrix(${1:data}, nrow = ${2:rows}, ncol = ${3:cols})
+
+snippet sg
+	setGeneric("${1:generic}", function(${2:x, ...}) {
+		standardGeneric("${1:generic}")
+	})
+
+snippet sm
+	setMethod("${1:generic}", ${2:class}, function(${2:x, ...}) {
+		${0}
+	})
+
+snippet sc
+	setClass("${1:Class}", slots = c(${2:name = "type"}))
+
+snippet if
+	if (${1:condition}) {
+		${0}
+	}
+
+snippet el
+	else {
+		${0}
+	}
+
+snippet ei
+	else if (${1:condition}) {
+		${0}
+	}
+
+snippet fun
+	${1:name} <- function(${2:variables}) {
+		${0}
+	}
+
+snippet for
+	for (${1:variable} in ${2:vector}) {
+		${0}
+	}
+
+snippet while
+	while (${1:condition}) {
+		${0}
+	}
+
+snippet switch
+	switch (${1:object},
+		${2:case} = ${3:action}
+	)
+
+snippet apply
+	apply(${1:array}, ${2:margin}, ${3:...})
+
+snippet lapply
+	lapply(${1:list}, ${2:function})
+
+snippet sapply
+	sapply(${1:list}, ${2:function})
+
+snippet mapply
+	mapply(${1:function}, ${2:...})
+
+snippet tapply
+	tapply(${1:vector}, ${2:index}, ${3:function})
+
+snippet vapply
+	vapply(${1:list}, ${2:function}, FUN.VALUE = ${3:type}, ${4:...})
+
+snippet rapply
+	rapply(${1:list}, ${2:function})
+
+snippet ts
+	`r paste("#", date(), "------------------------------\n")`
+
+snippet shinyapp
+	library(shiny)
+	ui <- fluidPage(
+	  ${0}
+	)
+	server <- function(input, output, session) {
+	}
+	shinyApp(ui, server)
+
+snippet shinymod
+	${1:name}UI <- function(id) {
+	  ns <- NS(id)
+	  tagList(
+		${0}
+	  )
+	}
+	${1:name}Server <- function(id) {
+	  moduleServer(
+	    id,
+	    function(input,  output, session) {
+	    }
+	  )
+	}
+
+snippet pp
+	"`r gsub('"', "", gsub("\\\\", "/", readClipboard()))`"
+
+snippet intro
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## Copyright `r format(Sys.Date(), "%Y")` VU
+	## Web Page: http://www.vu.nl
+	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	##
+	##' *INFO*:
+	## 1) ___
+	##
+	## ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet datuminit
+	## `r format(Sys.time(), "%d-%m-%Y")`: X_INITIAAL_X: `r Sys.getenv("BRANCH")`
+
+snippet block_read
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 1. READ ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_edit
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_edit_and_add
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT & ADD TO THE ANALYSIS SET ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_end
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## END ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_clear
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_clear_and_write
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## WRITE & CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_subblock
+	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	##
+
+snippet block_subsubblock
+	## _________________________________________________________________________________________________
+	##
+
+snippet block_assertions
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	## X. ASSERTIONS ####
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	## TODO: Perform assertion tests
+
+snippet block_assertions_subblock
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+snippet standaard_as
+	vColumns <- c(
+		"INS_Faculteit",
+		"INS_Inschrijvingsjaar",
+		"INS_Opleidingsfase_BPM",
+		"INS_Opleidingsnaam_2002",
+		"INS_Studentnummer",
+		"INS_Studiejaar"
+	)
+	${0}
+	dfAS <- get_analysisset(columns = vColumns)
+
+snippet script_read
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## Copyright `r format(Sys.Date(), "%Y")` VU
+	## Web Page: http://www.vu.nl
+	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	##
+	##' *INFO*:
+	## 1) ___
+	##
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 1. READ ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## TODO: Read all necessary files:
+	## TODO: Read the file ${1:Dataset} from the datasets folder
+	## TODO: Choose the correct read function here
+	${0}
+	${1:Dataset} <- read_delim(paste0(Sys.getenv("NETWORK_DIR"), "Datasets/${4:Bestand}"))
+	${0}
+	## Read the naming file in
+	## TODO: Create the documentation file
+	${1:Dataset}_naming <- read_documentation("Documentatie_${1:Dataset}.csv")
+	${0}
+	${0}
+	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	## Up to date check
+	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	## TODO: Perform up-to-date check
+	${0}
+	up_to_date(bestandspad = ${1:Dataset},
+							frequentie = ,
+							contact = "",
+							inleesscript = ${1:Dataset})
+	${0}
+	${0}
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	## X. ASSERTIONS ####
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	vvauditor::assert_naming(${1:Dataset}, ${1:Dataset}_naming, "${1:Dataset}")
+	${0}
+	${0}
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## TODO: Change column names using the documentation
+	${0}${1:Dataset} <- ${1:Dataset} %>% wrapper_translate_colnames_documentation(${1:Dataset}_naming)
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## WRITE & CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## Ceate a documentation file, if running for the first time
+	## vvmover::create_documentation(${1:Dataset}, "${1:Dataset}")
+	${0}
+	vvmover::write_file_proj(${1:Dataset}, "${3:Prefix}_${1:Dataset}")
+	${0}
+	vvcommander::clear_script_objects()
+
+snippet script_manipuleren
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## Copyright `r format(Sys.Date(), "%Y")` VU
+	## Web Page: http://www.vu.nl
+	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	##
+	##' *INFO*:
+	## 1) ___
+	##
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 1. READ ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## TODO: Read the dataset ${1:Dataset}
+	${0}
+	${1:Dataset} <- vvmover::read_file_proj(${3:Prefix}_${1:Dataset})
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## TODO: Edit the data
+	## TODO: Perform manipulations on the data here
+	${0}
+	${1:Dataset} <- ${1:Dataset} %>%
+		distinct()
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## WRITE & CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	${0}
+	vvmover::write_file_proj(${1:Dataset}, "${3:Prefix}_${1:Dataset}")
+	${0}
+	vvcommander::clear_script_objects()
+
+snippet script_rapporten
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## Copyright `r format(Sys.Date(), "%Y")` VU
+	## Web Page: http://www.vu.nl
+	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	##
+	##' *INFO*:
+	## 1) ___
+	##
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 1. READ ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	${0}
+	## TODO: Choose variables
+	vVariabelen <- c(${8:Variabelen})
+	## TODO: Read analysis set
+	if (!exists("dfAS")) {
+		dfAS <- get_analysisset(columns = vVariabelen)
+	}
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	${0}
+	## TODO: Perform manipulations on the data here
+	${9:Dataset} <- dfAS %>%
+		${10:functie}()
+	${0}
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## WRITE & CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	${0}
+	${11:Savefunctie}(${9:Dataset}, "${12:Prefix}_${9:Dataset}", output = ${13:Datalocatie})
+	${0}
+	vvcommander::clear_script_objects()
+
