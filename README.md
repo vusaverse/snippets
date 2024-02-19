@@ -2,11 +2,20 @@
 
 Custom snippets designed for RStudio.
 
+>[!NOTE]
+>Snippets make use of system variables
+>Currently, these include:
+>- BRANCH
+>- NETWORK_DIR
+>- TEAM_EMAIL
+
 Copy the snippets into the correct language file from the `Tools > Edit Code Snippets`.
 
 Or use the following script to do it in R:
 
-*Note: * This will append the snippets to your existing R snippets.
+>[!NOTE]
+>This will append the snippets to your existing R snippets.
+
 
 
 ```
