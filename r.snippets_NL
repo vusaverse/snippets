@@ -114,61 +114,65 @@ snippet pp
 
 snippet intro
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## R code voor Education Analytics Vrije Universiteit Amsterdam
 	## Copyright `r format(Sys.Date(), "%Y")` VU
 	## Web Page: http://www.vu.nl
-	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	## Contact: vu-analytics@vu.nl
+	## Verspreiding buiten de VU: Ja
 	##
 	##' *INFO*:
 	## 1) ___
 	##
 	## ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-snippet block_read
+snippet datuminit
+	## `r format(Sys.time(), "%d-%m-%Y")`: X_INITIAAL_X: ${2:Commentaar}
+
+snippet blok_inlezen
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 1. READ ####
+	## 1. INLEZEN ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-snippet block_edit
+snippet blok_bewerken
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 2. EDIT ####
-	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-snippet block_edit_and_add
-	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 2. EDIT & ADD TO THE ANALYSIS SET ####
+	## 2. BEWERKEN ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-snippet block_end
+snippet blok_bewerken_en_toevoegen
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## END ####
-	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-snippet block_clear
-	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## CLEAR ####
+	## 2. BEWERKEN & TOEVOEGEN AAN ANALYSESET ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-snippet block_clear_and_write
+snippet blok_einde
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## WRITE & CLEAR ####
+	## EINDE ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-snippet block_subblock
+snippet blok_opruimen
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## RUIM OP ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet blok_opruimen_en_bewaren
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## BEWAAR & RUIM OP ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet blok_subblok
 	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	##
 
-snippet block_subsubblock
+snippet blok_subsubblok
 	## _________________________________________________________________________________________________
 	##
 
-snippet block_assertions
+snippet blok_assertions
 	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	## X. ASSERTIONS ####
 	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	## TODO: Perform assertion tests
+	## TODO: Voer de assertion tests uit
 
-snippet block_assertions_subblock
+snippet blok_assertions_subblok
 	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 snippet standaard_as
@@ -183,34 +187,35 @@ snippet standaard_as
 	${0}
 	dfAS <- get_analysisset(columns = vColumns)
 
-snippet script_read
+snippet script_inlezen
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## R code voor Education Analytics Vrije Universiteit Amsterdam
 	## Copyright `r format(Sys.Date(), "%Y")` VU
 	## Web Page: http://www.vu.nl
-	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	## Contact: vu-analytics@vu.nl
+	## Verspreiding buiten de VU: Ja
 	##
 	##' *INFO*:
 	## 1) ___
 	##
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 1. READ ####
+	## 1. INLEZEN ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## TODO: Read all necessary files:
-	## TODO: Read the file ${1:Dataset} from the datasets folder
-	## TODO: Choose the correct read function here
+	## TODO: Lees alle benodigde bestanden in:
+	## TODO: Lees het bestand ${1:Dataset} in uit de datasets folder
+	## TODO: Kies hier de juiste inleesfunctie
 	${0}
 	${1:Dataset} <- read_delim(paste0(Sys.getenv("NETWORK_DIR"), "Datasets/${4:Bestand}"))
 	${0}
-	## Read the naming file in
-	## TODO: Create the documentation file
+	## Lees het namingbestand in
+	## TODO: Maak het documentatiebestand in de folder XX. Documentatie/
 	${1:Dataset}_naming <- read_documentation("Documentatie_${1:Dataset}.csv")
 	${0}
 	${0}
 	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	## Up to date check
 	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	## TODO: Perform up-to-date check
+	## TODO: Voer up-to-date uit
 	${0}
 	up_to_date(bestandspad = ${1:Dataset},
 							frequentie = ,
@@ -226,92 +231,92 @@ snippet script_read
 	${0}
 	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 2. EDIT ####
+	## 2. BEWERKEN ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## TODO: Change column names using the documentation
+	## Pas kolomnamen aan met behulp van de documentatie
 	${0}${1:Dataset} <- ${1:Dataset} %>% wrapper_translate_colnames_documentation(${1:Dataset}_naming)
 	${0}
 	${0}
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## WRITE & CLEAR ####
+	## BEWAAR & RUIM OP ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## Ceate a documentation file, if running for the first time
-	## create_documentation(${1:Dataset}, "${1:Dataset}")
+	## Voor eerste keer runnen, maak een documentatie bestand aan
+	## create_documentatie(${1:Dataset}, "${1:Dataset}")
 	${0}
 	write_file_proj(${1:Dataset}, "${3:Prefix}_${1:Dataset}")
 	${0}
 	clear_script_objects()
 
-snippet script_manipulate
+snippet script_manipuleren
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## R code voor Education Analytics Vrije Universiteit Amsterdam
 	## Copyright `r format(Sys.Date(), "%Y")` VU
 	## Web Page: http://www.vu.nl
-	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	## Contact: vu-analytics@vu.nl
+	## Verspreiding buiten de VU: Ja
 	##
 	##' *INFO*:
 	## 1) ___
 	##
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 1. READ ####
+	## 1. INLEZEN ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## TODO: Read the dataset ${1:Dataset}
+	## TODO: Lees het ingelezen bestand ${1:Dataset} in
 	${0}
 	${1:Dataset} <- read_file_proj(${3:Prefix}_${1:Dataset})
 	${0}
 	${0}
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 2. EDIT ####
+	## 2. BEWERKEN ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## TODO: Edit the data
-	## TODO: Perform manipulations on the data here
+	## TODO: Bewerkingen op het databestand
+	## TODO: Voer hier de bewerkingen uit op het databestand
 	${0}
 	${1:Dataset} <- ${1:Dataset} %>%
 		distinct()
 	${0}
 	${0}
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## WRITE & CLEAR ####
+	## BEWAAR & RUIM OP ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	${0}
 	write_file_proj(${1:Dataset}, "${3:Prefix}_${1:Dataset}")
 	${0}
 	clear_script_objects()
 
-snippet script_report
+snippet script_rapporten
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## R code voor Education Analytics Vrije Universiteit Amsterdam
 	## Copyright `r format(Sys.Date(), "%Y")` VU
 	## Web Page: http://www.vu.nl
-	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	## Contact: vu-analytics@vu.nl
+	## Verspreiding buiten de VU: Ja
 	##
 	##' *INFO*:
 	## 1) ___
 	##
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 1. READ ####
+	## 1. INLEZEN ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	${0}
-	## TODO: Choose variables
+	## TODO: Kies de variabelen
 	vVariabelen <- c(${8:Variabelen})
-	## TODO: Read analysis set
-	if (!exists("dfAS")) {
-		dfAS <- get_analysisset(columns = vVariabelen)
-	}
+	## TODO: Lees de analyseset in
+	dfAS <- get_analysisset(columns = vVariabelen)
 	${0}
 	${0}
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## 2. EDIT ####
+	## 2. BEWERKEN ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	${0}
-	## TODO: Perform manipulations on the data here
+	## TODO: Voer hier de bewerkingen uit op het databestand
 	${9:Dataset} <- dfAS %>%
 		${10:functie}()
 	${0}
 	${0}
 	${0}
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	## WRITE & CLEAR ####
+	## BEWAAR & RUIM OP ####
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	${0}
 	${11:Savefunctie}(${9:Dataset}, "${12:Prefix}_${9:Dataset}", output = ${13:Datalocatie})
