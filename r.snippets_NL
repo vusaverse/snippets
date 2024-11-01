@@ -184,7 +184,7 @@ snippet standaard_as
 		"INS_Studentnummer",
 		"INS_Studiejaar",
 		"INS_Hoofdneven",
-		"INS_Indicatie_actief_op_peildatum_status
+		"INS_Indicatie_actief_op_peildatum_status"
 	)
 	${0}
 	dfAS <- get_analysisset(columns = vColumns)
