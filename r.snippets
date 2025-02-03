@@ -197,6 +197,26 @@ snippet standard_res_as
 	${0}
 	dfRESAS <- vusa::get_analysisset_res(columns=vColumns)
 
+snippet standard_vak_as
+	vColumns <- c(
+	"UAS_Vak_Jaar",
+	"UAS_Vak_Code",
+	"UAS_Vak_Naam_NL",
+	"UAS_Vak_Vaktype"
+	)
+	${0}
+	dfVAKAS <- vusa::get_analysisset_vak(columns=vColumns)
+
+snippet standard_opl_as
+	vColumns <- c(
+	"INS_Opleidingsnaam_2002",
+	"INS_Inschrijvingsjaar",
+	"UAS_Opleiding_Code",
+	"UAS_Opleiding_Naam_NL"
+	)
+	${0}
+	dfOPLAS <- vusa::get_analysisset_opl(columns=vColumns)
+
 snippet script_read
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	## R code for Education Analytics Vrije Universiteit Amsterdam
