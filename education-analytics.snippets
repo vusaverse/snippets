@@ -58,79 +58,78 @@ snippet standard_opl_as
 	dfOPLAS <- vusa::get_analysisset_opl(columns=vColumns)
 
 snippet etl_workflow
-    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    #                              ETL Workflow for PIPELINE
-    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    ${0}
-    # ------------------------------ 0. Configurations -----------------------------
-    ${0}
-    ## TODO:change pathnames to fit the pipeline
-    dataset <- .config$datasets$PIPELINE_NAME
-    RAW_DATA_PATH <- file.path(Sys.getenv("RAW_DATA_PATH"), dataset$paths$dir)
-    FILE_PATTERN <- dataset$paths$file_pattern
-    DATASET_NAME <- dataset$naming$dataset_name
-    ${0}
-    ## TODO: change the source to the right utility functions
-    # Load data specific utility functions
-    # example: source("01_ETL/BSA/BSA_helpers.R")
-    source("01_ETL/PIPELINE_NAME/PIPELINE_NAME_helpers.R")
-    ${0}
-    ${0}
-    # --------------------------- 1. Raw Data Ingestion ----------------------------
-    ${0}
-    file_path <- vvmover::get_recent_file_date_filename_ymd(
-    RAW_DATA_PATH,
-    FILE_PATTERN
-    )
-    ${0}
-    dfPIPELINE_NAME_RAW <- tryCatch(
-    {
-        ## TODO: add read helper function
-        # example: read_bsa(file_path)
-    },
-    error = function(e) {
-        stop(paste("Error reading raw data:", e$message))
-    }
-    )
-    ${0}
-    ## TODO: change export function to adhere to pipeline
-    etl_export(
-    data = dfPIPELINE_NAME_RAW,
-    dataset_name = paste0(DATASET_NAME, "_raw")
-    # step = "raw"
-    )
-    ${0}
-    # ------------------------- 2. Clean & Basic Transformations -------------------
-    # Allowed transformations in this step:
-    # Renaming of columns: rename, setNames
-    # Type changing: as.x
-    # Keeping distinct values: distinct
-    ${0}
-    # Change column names to preferred names
-    mapping <- readr::read_csv2(dataset$paths$column_mapping)
-    rename_vector <- setNames(mapping$raw_field_name, mapping$preferred_field_name)
-    ${0}
-    # Perform basis transformations
-    dfPIPELINE_NAME_CLEANED <- dfPIPELINE_NAME_RAW %>%
-    ${0}
-    ## TODO: change export function to adhere to pipeline
-    etl_export(
-    data = dfPIPELINE_NAME_CLEANED,
-    dataset_name = paste0(DATASET_NAME, "_cleaned")
-    # step = "cleaned"
-    )
-    ${0}
-    # ----------------- 3. Apply Business Logic (Corrections & Enrichment) ---------
-    ${0}
-    # Perform Business logic transformations
-    dfPIPELINE_NAME_ENRICHED <- dfPIPELINE_NAME_CLEANED %>%
-    ${0}
-    etl_export(
-    data = dfPIPELINE_NAME_ENRICHED,
-    dataset_name = paste0(DATASET_NAME, "_enriched")
-    # step = "enriched"
-    )
-    ${0}
-    # ------------------------------- 4. Cleanup -----------------------------------
-    ${0}
-    vusa::clear_global_proj()
+	# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	#                              ETL Workflow for ${1:PIPELINE}
+	# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	# ------------------------------ 0. Configurations -----------------------------
+	## TODO: change pathnames to fit the pipeline
+	dataset <- .config$datasets$${1}
+	RAW_DATA_PATH <- file.path(Sys.getenv("RAW_DATA_PATH"), dataset$paths$dir)
+	FILE_PATTERN <- dataset$paths$file_pattern
+	DATASET_NAME <- dataset$naming$dataset_name
+
+	## TODO: change the source to the right utility functions
+	# Load data specific utility functions
+	# example: source("01_ETL/BSA/BSA_helpers.R")
+	source("01_ETL/${1}/${1}_helpers.R")
+
+	# --------------------------- 1. Raw Data Ingestion ----------------------------
+	file_path <- vvmover::get_recent_file_date_filename_ymd(
+		RAW_DATA_PATH,
+		FILE_PATTERN
+	)
+
+	df${1}_RAW <- tryCatch(
+		{
+			## TODO: add read helper function
+			# example: read_bsa(file_path)
+		},
+		error = function(e) {
+			stop(paste("Error reading raw data:", e$message))
+		}
+	)
+
+	## TODO: change export function to adhere to pipeline
+	etl_export(
+		data = df${1}_RAW,
+		dataset_name = paste0(DATASET_NAME, "_raw")
+		# step = "raw"
+	)
+
+	# ------------------------- 2. Clean & Basic Transformations -------------------
+	# Allowed transformations in this step:
+	# Renaming of columns: rename, setNames
+	# Type changing: as.x
+	# Keeping distinct values: distinct
+
+	# Change column names to preferred names
+	mapping <- readr::read_csv2(dataset$paths$column_mapping)
+	rename_vector <- setNames(mapping$raw_field_name, mapping$preferred_field_name)
+
+	# Perform basis transformations
+	df${1}_CLEANED <- df${1}_RAW %>%
+		${2:mutate()}  # example transformation
+
+	## TODO: change export function to adhere to pipeline
+	etl_export(
+		data = df${1}_CLEANED,
+		dataset_name = paste0(DATASET_NAME, "_cleaned")
+		# step = "cleaned"
+	)
+
+	# ----------------- 3. Apply Business Logic (Corrections & Enrichment) ---------
+	# Perform Business logic transformations
+	df${1}_ENRICHED <- df${1}_CLEANED %>%
+		${3:mutate()}  # enrichment example
+
+	etl_export(
+		data = df${1}_ENRICHED,
+		dataset_name = paste0(DATASET_NAME, "_enriched")
+		# step = "enriched"
+	)
+
+	# ------------------------------- 4. Cleanup -----------------------------------
+	vusa::clear_global_proj()
+
+	${0}
