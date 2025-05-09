@@ -1,0 +1,240 @@
+snippet intro
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## Copyright `r format(Sys.Date(), "%Y")` VU
+	## Web Page: http://www.vu.nl
+	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	##
+	##' *INFO*:
+	## 1) ___
+	##
+	## ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_read
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 1. READ ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_edit
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_edit_and_add
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT & ADD TO THE ANALYSIS SET ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_end
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## END ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_clear
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_clear_and_write
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## WRITE & CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+snippet block_subblock
+	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	##
+
+snippet block_subsubblock
+	## _________________________________________________________________________________________________
+	##
+
+snippet block_assertions
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	## X. ASSERTIONS ####
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	## TODO: Perform assertion tests
+
+snippet block_assertions_subblock
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+snippet standard_as
+	vColumns <- c(
+		"INS_Faculteit",
+		"INS_Inschrijvingsjaar",
+		"INS_Inschrijvingsjaar_EOI",
+		"INS_Opleidingsfase_BPM",
+		"INS_Opleidingsnaam_2002",
+		"INS_Studentnummer",
+		"INS_Studiejaar",
+		"INS_Hoofdneven",
+		"INS_Indicatie_actief_op_peildatum_status"
+	)
+	${0}
+	dfAS <- get_analysisset(columns = vColumns)
+
+snippet standard_res_as
+	vColumns <- c(
+	"INS_Studentnummer",
+	"INS_Opleidingsnaam_2002",
+	"RES_Beoordeling",
+	"RES_EC_numeriek_geboekt",
+	"RES_Inschrijving_soort",
+	"RES_Poging_nummer"
+	)
+	${0}
+	dfRESAS <- vusa::get_analysisset_res(columns=vColumns)
+
+snippet standard_vak_as
+	vColumns <- c(
+	"UAS_Vak_Jaar",
+	"UAS_Vak_Code",
+	"UAS_Vak_Naam_NL",
+	"UAS_Vak_Vaktype"
+	)
+	${0}
+	dfVAKAS <- vusa::get_analysisset_vak(columns=vColumns)
+
+snippet standard_opl_as
+	vColumns <- c(
+	"INS_Opleidingsnaam_2002",
+	"INS_Inschrijvingsjaar",
+	"UAS_Opleiding_Code",
+	"UAS_Opleiding_Naam_NL"
+	)
+	${0}
+	dfOPLAS <- vusa::get_analysisset_opl(columns=vColumns)
+
+snippet script_read
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## Copyright `r format(Sys.Date(), "%Y")` VU
+	## Web Page: http://www.vu.nl
+	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	##
+	##' *INFO*:
+	## 1) ___
+	##
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 1. READ ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## TODO: Read all necessary files:
+	## TODO: Read the file ${1:Dataset} from the datasets folder
+	## TODO: Choose the correct read function here
+	${0}
+	${1:Dataset} <- read_delim(paste0(Sys.getenv("NETWORK_DIR"), "Datasets/${4:Bestand}"))
+	${0}
+	## Read the naming file in
+	## TODO: Create the documentation file
+	${1:Dataset}_naming <- read_documentation("Documentatie_${1:Dataset}.csv")
+	${0}
+	${0}
+	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	## Up to date check
+	## xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	## TODO: Perform up-to-date check
+	${0}
+	up_to_date(bestandspad = ${1:Dataset},
+							frequentie = ,
+							contact = "",
+							inleesscript = ${1:Dataset})
+	${0}
+	${0}
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	## X. ASSERTIONS ####
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	assert_naming(${1:Dataset}, ${1:Dataset}_naming, "${1:Dataset}")
+	${0}
+	${0}
+	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## TODO: Change column names using the documentation
+	${0}${1:Dataset} <- ${1:Dataset} %>% wrapper_translate_colnames_documentation(${1:Dataset}_naming)
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## WRITE & CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## Ceate a documentation file, if running for the first time
+	## create_documentation(${1:Dataset}, "${1:Dataset}")
+	${0}
+	write_file_proj(${1:Dataset}, "${3:Prefix}_${1:Dataset}")
+	${0}
+	clear_script_objects()
+
+snippet script_manipulate
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## Copyright `r format(Sys.Date(), "%Y")` VU
+	## Web Page: http://www.vu.nl
+	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	##
+	##' *INFO*:
+	## 1) ___
+	##
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 1. READ ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## TODO: Read the dataset ${1:Dataset}
+	${0}
+	${1:Dataset} <- read_file_proj(${3:Prefix}_${1:Dataset})
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## TODO: Edit the data
+	## TODO: Perform manipulations on the data here
+	${0}
+	${1:Dataset} <- ${1:Dataset} %>%
+		distinct()
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## WRITE & CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	${0}
+	write_file_proj(${1:Dataset}, "${3:Prefix}_${1:Dataset}")
+	${0}
+	clear_script_objects()
+
+snippet script_report
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## R code for Education Analytics Vrije Universiteit Amsterdam
+	## Copyright `r format(Sys.Date(), "%Y")` VU
+	## Web Page: http://www.vu.nl
+	## Contact: `r Sys.getenv("TEAM_EMAIL")`
+	##
+	##' *INFO*:
+	## 1) ___
+	##
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 1. READ ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	${0}
+	## TODO: Choose variables
+	vVariabelen <- c(${8:Variabelen})
+	## TODO: Read analysis set
+	if (!exists("dfAS")) {
+		dfAS <- get_analysisset(columns = vVariabelen)
+	}
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## 2. EDIT ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	${0}
+	## TODO: Perform manipulations on the data here
+	${9:Dataset} <- dfAS %>%
+		${10:functie}()
+	${0}
+	${0}
+	${0}
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	## WRITE & CLEAR ####
+	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	${0}
+	${11:Savefunctie}(${9:Dataset}, "${12:Prefix}_${9:Dataset}", output = ${13:Datalocatie})
+	${0}
+	clear_script_objects()
