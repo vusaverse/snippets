@@ -172,7 +172,7 @@ snippet block_assertions_subblock
 	## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 snippet standard_as
-	vColumns <- c(
+	vColumns_as <- c(
 		"INS_Studentnummer",
 		"INS_Opleidingsfase_BPM",
         "INS_Faculteit",
@@ -184,10 +184,10 @@ snippet standard_as
 		"INS_Indicatie_actief_op_peildatum_status"
 	)
 	${0}
-	dfAS <- get_analysisset(columns = vColumns)
+	dfAS <- get_analysisset(columns = vColumns_as)
 
 snippet standard_res_as
-	vColumns <- c(
+	vColumns_res_as <- c(
 	"INS_Studentnummer",
 	"INS_Opleidingsnaam_2002",
 	"RES_Beoordeling",
@@ -196,27 +196,27 @@ snippet standard_res_as
 	"RES_Poging_nummer"
 	)
 	${0}
-	dfRESAS <- vusa::get_analysisset_res(columns=vColumns)
+	dfRESAS <- vusa::get_analysisset_res(columns = vColumns_res_as)
 
 snippet standard_vak_as
-	vColumns <- c(
+	vColumns_vak_as <- c(
 	"UAS_Vak_Jaar",
 	"UAS_Vak_Code",
 	"UAS_Vak_Naam_NL",
 	"UAS_Vak_Vaktype"
 	)
 	${0}
-	dfVAKAS <- vusa::get_analysisset_vak(columns=vColumns)
+	dfVAKAS <- vusa::get_analysisset_vak(columns = vColumns_vak_as)
 
 snippet standard_opl_as
-	vColumns <- c(
+	vColumns_opl_as <- c(
 	"INS_Opleidingsnaam_2002",
 	"INS_Inschrijvingsjaar",
 	"UAS_Opleiding_Code",
 	"UAS_Opleiding_Naam_NL"
 	)
 	${0}
-	dfOPLAS <- vusa::get_analysisset_opl(columns=vColumns)
+	dfOPLAS <- vusa::get_analysisset_opl(columns = vColumns_opl_as)
 
 snippet script_read
 	## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
