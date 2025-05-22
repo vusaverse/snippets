@@ -103,12 +103,13 @@ snippet etl_workflow
 	# Type changing: as.x
 	# Keeping distinct values: distinct
 
-	# Change column names to preferred names
-	mapping <- readr::read_csv2(dataset$paths$column_mapping)
-	rename_vector <- setNames(mapping$raw_field_name, mapping$preferred_field_name)
+	## Renaming ##
+	df${1}_CLEANED <- dfBSA_RAW %>%
+		# Change column names to preferred names
+		apply_column_mapping(dataset)
 
-	# Perform basis transformations
-	df${1}_CLEANED <- df${1}_RAW %>%
+	## Mutations ##
+	df${1}_CLEANED <- df${1}_CLEANED %>%
 		${2:mutate()}  # example transformation
 
 	## TODO: change export function to adhere to pipeline
